@@ -45,6 +45,7 @@ async def delete_task(session: SessionDep, id_task : int):
     task_found = session.get(Task, id_task)
     if task_found:
         session.delete(task_found)
+        session.commit()
         return JSONResponse(content={'state': "Correcto", 
                                      'msg': "La tarea ha sido eliminada correctamente"
                                     })
